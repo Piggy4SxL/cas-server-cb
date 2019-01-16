@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title th:text="${#themes.code('cb.pageTitle')}"></title>
+    <link rel="stylesheet" th:href="@{${#themes.code('cb.css')}}"/>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        var trackGeoLocation = /*[[${trackGeoLocation}]]*/ === "true";
+
+        window.casLogin = {
+            flowExecutionKey: [[${flowExecutionKey}]],
+            pageTitle: [[#{cas.login.pagetitle}]],
+            submitBtnMsg: [[#{screen.welcome.button.login}]],
+            usernameLabel: [[#{screen.welcome.label.netid}]],
+            passwordLabel: [[#{screen.welcome.label.password}]],
+            loginWaitingMsg: [[#{screen.welcome.button.loginwip}]],
+            credential: [[${credential}]],
+            publicPath: [[${#themes.code('meng.img.file')}]]
+        };
+        /*]]>*/
+    </script>
+</head>
+<body>
+</body>
+<script type="text/javascript" th:src="@{${#themes.code('cb.js.bundle')}}"></script>
+<script type="text/javascript" th:src="@{${#themes.code('cb.js.vendors')}}"></script>
+</html>

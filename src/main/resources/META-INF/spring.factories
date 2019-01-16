@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.oc.auth.config.CustomAuthenticationConfiguration,\
+  com.oc.auth.webflow.CustomWebFlowConfig
