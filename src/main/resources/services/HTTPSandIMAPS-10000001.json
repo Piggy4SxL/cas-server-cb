@@ -7,9 +7,5 @@
   "evaluationOrder": 10000,
   "attributeReleasePolicy": {
     "@class": "org.apereo.cas.services.ReturnAllAttributeReleasePolicy"
-  },
-  "proxyPolicy": {
-    "@class": "org.apereo.cas.services.RegexMatchingRegisteredServiceProxyPolicy",
-    "pattern": "^(https|http)?://.*"
   }
 }

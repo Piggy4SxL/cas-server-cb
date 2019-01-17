@@ -6,6 +6,8 @@ import cn.sxl.utils.otp.OtpUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.oc.auth.credential.CusLoginUserInfoEntity;
+import com.oc.auth.exception.CodeException;
+import com.oc.auth.exception.PasswordException;
 import com.oc.entity.LdapInfo;
 import com.oc.entity.User;
 import com.oc.repository.UserRepository;
@@ -17,7 +19,6 @@ import org.apereo.cas.authentication.handler.support.AbstractPreAndPostProcessin
 import org.apereo.cas.authentication.principal.PrincipalFactory;
 import org.apereo.cas.services.ServicesManager;
 
-import javax.security.auth.login.AccountException;
 import java.security.GeneralSecurityException;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +42,6 @@ public class CustomMongoAuthenticationHandler extends AbstractPreAndPostProcessi
 
     @Override
     public boolean supports(Credential credential) {
-        System.out.println("被调用了");
         return credential instanceof UsernamePasswordCredential;
     }
 
@@ -63,11 +63,11 @@ public class CustomMongoAuthenticationHandler extends AbstractPreAndPostProcessi
         User user = userRepository.findByCn(cn);
 
         if (!verifyPassword(user.getPassword(), password)) {
-            throw new AccountException("密码错误！");
+            throw new PasswordException("密码错误！");
         }
 
         if (!verifyCode(user.getSt(), code)) {
-            throw new AccountException("动态验证码错误！");
+            throw new CodeException("动态验证码错误！");
         }
 
         HashMap<String, Object> principleAttributes = Maps.newHashMap();
